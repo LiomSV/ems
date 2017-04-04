@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<TableView fx:id="callTable" layoutX="14.0" layoutY="-7.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="org.vst.ems.client.control.CallTableController">
+    <columns>
+        <TableColumn editable="false" prefWidth="75.0" text="%main.call_table.column.id">
+            <cellValueFactory>
+                <PropertyValueFactory property="id" />
+            </cellValueFactory>
+        </TableColumn>
+        <TableColumn editable="false" prefWidth="75.0" text="%main.call_table.column.created_when">
+            <cellValueFactory>
+                <PropertyValueFactory property="createdWhen" />
+            </cellValueFactory>
+        </TableColumn>
+        <TableColumn editable="false" prefWidth="75.0" text="%main.call_table.column.description">
+            <cellValueFactory>
+                <PropertyValueFactory property="description" />
+            </cellValueFactory>
+        </TableColumn>
+        <TableColumn editable="false" prefWidth="75.0" sortable="false" text="%main.call_table.column.actions" />
+    </columns>
+    <columnResizePolicy>
+        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+    </columnResizePolicy>
+</TableView>

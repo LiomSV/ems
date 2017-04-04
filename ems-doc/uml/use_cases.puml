@@ -1,0 +1,46 @@
+@startuml
+
+rectangle Station {
+
+    actor Dispatcher as Dis
+    actor :Station Doctor: as SDoc
+    actor :Chief Doctor: as CDoc
+
+    SDoc -right-|> Dis
+    CDoc -right-|> SDoc
+}
+
+rectangle EMS {
+
+    Dis --> (add Call)
+    Dis --> (assign Call)
+    Dis --> (set Call Status)
+    Dis --> (monitor active Calls)
+    Dis --> (monitor active Crews)
+    Dis --> (monitor Crews' location)
+    Dis --> (finished Calls listing)
+    Dis --> (add Crew)
+    Dis --> (remove Crew)
+
+    (add Call) --> (assign Call)
+    (assign Call) --> (set Call Status)
+}
+
+newpage
+
+rectangle Crew {
+    actor Doctor as Doc
+    actor Assistant as As
+    actor Attendant as At
+    actor Driver as D
+}
+
+rectangle EMS-Mobile {
+
+    Crew --> (receive Call info)
+    Crew --> (receive Call location)
+    Crew --> (change Crew Status)
+    Crew --> (set Call Status:\nMOVING, \nFINDING, \nTREATMENT, \nTRANSPORTATION, \nFINISHED)
+}
+
+@enduml

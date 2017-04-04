@@ -35,7 +35,7 @@ class Call {
     +createdWhen : Timestamp
     +finishedWhen : Timestamp
     +appeals : List<Appeal>
-    +address : Address
+    +location : Location
 '    +building : Building
 '    +apartment : Apartment
 '    +place : Place
@@ -62,7 +62,6 @@ enum CallStatus {
     FINDING
     TREATMENT
     TRANSPORTATION
-    RETURN
     FINISHED
     ARCHIVED
 }
@@ -85,10 +84,10 @@ enum Cause {
     -Cause (name : String, priority : int)
 }
 
-interface Address {
-    +id : long
-    +location : Location
-    +notes : List<AddressNote>
+interface Location {
+'    +id : long
+'    +location : Location
+'    +notes : List<AddressNote>
 }
 
 class Building {
@@ -128,6 +127,7 @@ class MedAction {
 }
 
 class Crew {
+    +id : long
     +members : List<Employee>
     +car : Car
     +state : CrewState
@@ -192,6 +192,7 @@ enum Position {
     DISPATCHER
     DOCTOR
     ASSISTANT
+    ATTENDANT
     STATION_DOCTOR
     CHIEF_DOCTOR
 }
@@ -222,7 +223,7 @@ Appeal "0..*" -- "1" AppealResult
 Call "0..*" -- "1..*" Appeal
 Call "0..*" -- "0..*" Crew : assignedCalls
 Call "1" -- "0..*" Crew : currentCall
-Call -- Address
+Call -- Location
 Call "1" *-- "1..*" CallState
 Call "1" *-- "0..*" CallNote
 Call "0..*" o-- "1" Cause
@@ -231,9 +232,9 @@ CallState "0..1" <-- "0..1" CallState
 CallState "0..*" -- "1" CallStatus
 CallNote "0..*" o-- "1" CallNoteType
 
-Address <|-down- Building
-Address <|-down- Apartment
-Address <|-down- Place
+Location <|-down- Building
+Location <|-down- Apartment
+Location <|-down- Place
 Place "1" -- "0..*" PlaceName
 Address "1" *-- "0..*" AddressNote
 Apartment "0..*" -up-> "1" Building
